@@ -20,9 +20,7 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1200&color=0F2557&center=true&vCenter=true&width=620&lines=Enter+height+and+weight...;No+backend+%E2%80%A2+No+build+%E2%80%A2+Just+open+index.html" alt="Greeting typing animation" />
 </div>
 
-BMI Calculator of **Abhishek Shahaji Jadhav** — Web Developer & first-year BCA student at VIIT, Baramati. Built with **HTML5 + CSS3 + Vanilla JavaScript**: no frameworks, no libraries, no APIs, no build step, no external assets in the app itself.
 
-> **Internship attribution:** 45-day Web Development Internship at **Veda Technology** — Task 6: BMI Calculator.
 
 <details>
 <summary><b>📖 Table of Contents (click to expand)</b></summary>
@@ -119,7 +117,7 @@ internship-task-6/
     └── favicon.svg                         # BMI favicon (navy + blue + orange)
 ```
 
-All paths are **relative** (`./style.css`, `./script.js`, `./assets/favicon.svg`) for GitHub Pages compatibility.
+
 
 ## 🚀 How to Run
 
@@ -152,53 +150,6 @@ node -e "const b = require('./script.js'); console.log(b.formatBMI(b.calculateBM
 | ![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white) | https://www.linkedin.com/in/0xabhi13/ |
 | ![Portfolio](https://img.shields.io/badge/Portfolio-2563EB?style=flat-square&logo=globe&logoColor=white) | https://0xabhi13.github.io/MyPortfolio/ |
 
-## 📝 My Approach
-
-1. **Read the brief first:** height-cm + weight-kg inputs, standard formula with cm→m conversion, 2-decimal display with full-precision classification, four adult categories + explanations, strict per-field validation (empty / non-numeric / zero / negative / unrealistic limits), result-only-after-valid-submit, scale indicator, reset clears everything, Enter support, separate files, relative paths.
-2. **Built the structure:** semantic landmarks, single `h1` ("BMI Calculator") + subtitle, two labelled text inputs with hints and dedicated `role="alert"` error slots, Calculate (submit) + Reset actions, result panel with empty state → value + badge + explanation + healthy range + scale, categories reference, formula section, visible screening disclaimer.
-3. **Styled mobile-up:** same token system as Task 5 (light / navy / blue) plus restrained orange (`--orange`, `--orange-soft`) for the overweight accent and disclaimer panel; category badges and a four-segment BMI scale with a navy marker; stacked buttons at 560 px; `prefers-reduced-motion` support.
-4. **Wrote honest JS:** pure functions (`calculateBMI`, `formatBMI`, `classifyBMI`, `validateMeasurement`, `healthyWeightRange`, `scalePosition`) exported for Node testing; strict regex + `Number()` + `isFinite` validation with 50–300 cm / 2–500 kg limits; `textContent` only (no `eval`, no innerHTML); guarded submit with first-invalid focus; errors clear on input.
-5. **Tested honestly:** syntax check, 8 calculation/classification assertions, 6 boundary assertions (18.5 / 25 / 30 plus just-below values), 14 validation assertions (empty, abc, NaN, Infinity, zero, negative, out-of-range), NaN/Infinity-never-render guards, and an ID cross-check between `script.js` and `index.html`.
-
-## ✅ Outcome
-
-A complete, responsive, dependency-free BMI Calculator: accurate math on all four brief examples (22.49 / 17.30 / 25.95 / 31.14), exact boundary behaviour at 18.5 / 25 / 30, friendly per-field validation with realistic limits, a visual scale with marker, a personalised healthy-weight range, full reset, keyboard support, and zero console errors. Ready to push to the public `BMI-calculator` repo and deploy on GitHub Pages.
-
-## 🌐 Deployment
-
-**GitHub Pages:**
-
-```powershell
-Set-Location "C:\Users\EDIUS X.30\Documents\Default Project\internship-task-6"
-git init -b main
-git add index.html style.css script.js README.md Veda_Technology_Task_6_Project_Report.docx assets
-git commit -m "Task 6: BMI Calculator (HTML + CSS + JS)"
-git remote add origin https://github.com/0xAbhi13/BMI-calculator.git
-git push -u origin main
-```
-
-Then GitHub → **Settings → Pages → Deploy from a branch → `main` / root** → `https://0xabhi13.github.io/BMI-calculator/`
-
-> Keep `index.html`, `style.css`, and `script.js` in the same directory with relative links so Pages resolves them correctly. Do not push unless you intend to submit — the commands above are provided for the submission step only.
-
-## 🧪 Testing Checklist
-
-- [x] 170 cm / 65 kg → 22.49, Normal weight.
-- [x] 170 cm / 50 kg → 17.30, Underweight.
-- [x] 170 cm / 75 kg → 25.95, Overweight.
-- [x] 170 cm / 90 kg → 31.14, Obesity.
-- [x] Empty inputs show friendly per-field messages, no result rendered.
-- [x] Zero and negative values rejected with clear messages.
-- [x] Invalid input (`abc`, `NaN`, `Infinity`, symbols) rejected; out-of-range values (height < 50 or > 300 cm; weight < 2 or > 500 kg) rejected.
-- [x] `NaN` / `Infinity` can never appear in the UI (`formatBMI` returns `null` for non-finite values).
-- [x] Reset clears inputs, errors, and results, and returns focus to the height field.
-- [x] Repeated calculations with different values update the result, badge, explanation, range, and marker.
-- [x] Correct category boundaries: 18.5 → Normal, 25 → Overweight, 30 → Obesity (plus just-below values verified).
-- [x] No JavaScript console errors (`node --check` clean, all 14 `getElementById` IDs verified present in HTML).
-- [x] Responsive on mobile and desktop (stacked buttons at 560 px, `clamp()` typography).
-- [x] Keyboard interaction: Enter submits, first invalid field receives focus, visible focus rings, errors clear on typing.
-- [x] All assets and scripts load correctly with relative paths (no backend or build process).
-- [x] The project folder includes `index.html`, `style.css`, `script.js`, `README.md`, `assets`, and the project report.
 
 ## 📜 JavaScript Concepts
 
@@ -226,19 +177,7 @@ Then GitHub → **Settings → Pages → Deploy from a branch → `main` / root*
 | **Calculate BMI (submit)** | Validates both fields; on success renders BMI + badge + explanation + range + marker; on failure shows per-field messages and focuses the first invalid field (Enter key works the same) |
 | **Reset** | Clears inputs, errors, and the result back to the empty state; focuses the height field |
 
-## 📸 Screenshots
 
-> Placeholder — add a screenshot after running the app.
-
-```text
-[ Screenshot coming soon — capture the calculator with a valid result, badge, and scale marker ]
-```
-
-To add one later, save an image as `screenshot.png` in this folder and embed it:
-
-```markdown
-![BMI Calculator screenshot](./screenshot.png)
-```
 
 ## ⚠️ Limitations & Disclaimer
 
@@ -246,13 +185,6 @@ To add one later, save an image as `screenshot.png` in this folder and embed it:
 - BMI does not distinguish fat from muscle and is **not a medical diagnosis** — the app states this visibly in the disclaimer panel.
 - Inputs are metric only (cm / kg); no imperial unit toggle, kept out deliberately to stay reliable and dependency-free.
 - No data is stored or sent anywhere — everything runs locally in the browser.
-
-## Accuracy Notes
-
-- All expected BMI values verified by executed Node assertions — no invented results.
-- Skills are presented as *learning/using* at internship level.
-- Internship is described as *ongoing, project-based learning*.
-- App uses zero external requests; README badges/animations are docs-only.
 
 ---
 
