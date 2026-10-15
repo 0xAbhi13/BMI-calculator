@@ -1,0 +1,462 @@
+/* ============================================================
+   BMI Calculator — Veda Technology Internship Task 6
+   Palette: white / very light background, deep navy text,
+   blue primary accent with restrained orange highlights.
+   No frameworks or external assets.
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #f6f8fc;
+  --card: #ffffff;
+  --navy: #0f2557;
+  --navy-soft: #1e3a8a;
+  --muted: #55648c;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-soft: #e8effe;
+  --orange: #ea580c;
+  --orange-soft: #fff3e8;
+  --border: #e2e8f5;
+  --shadow: 0 12px 32px rgba(15, 37, 87, 0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --error: #b42318;
+  --error-bg: #fef2f2;
+  --success: #15803d;
+  --success-bg: #f0fdf4;
+  --warn: #b45309;
+  --warn-bg: #fffbeb;
+  --focus: #2563eb;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+  line-height: 1.5;
+}
+
+.page {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: 0.3px;
+}
+
+.header h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: var(--blue);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+}
+
+.section-note {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 1rem;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input::placeholder {
+  color: #9aa6c4;
+}
+
+.field input:focus-visible,
+.btn:focus-visible {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.error {
+  margin: 0;
+  padding: 8px 10px;
+  font-size: 0.88rem;
+  color: var(--error);
+  background: var(--error-bg);
+  border: 1px solid #f3c2bd;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Actions ---------- */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn {
+  flex: 1;
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  background: var(--blue);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+}
+
+.btn-secondary {
+  color: var(--navy);
+  background: #fff;
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: #f1f5fd;
+}
+
+/* ---------- Result ---------- */
+.result-panel {
+  margin-top: 16px;
+  padding: 18px;
+  text-align: center;
+  background: #f8faff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.result-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.result-empty p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.bmi-value {
+  margin: 6px 0 0;
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.badge-row {
+  margin: 8px 0 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.badge-under {
+  color: var(--navy-soft);
+  background: var(--blue-soft);
+  border-color: #c4d6fb;
+}
+
+.badge-normal {
+  color: var(--success);
+  background: var(--success-bg);
+  border-color: #bbe5c8;
+}
+
+.badge-over {
+  color: var(--warn);
+  background: var(--warn-bg);
+  border-color: #f5d9a8;
+}
+
+.badge-obese {
+  color: var(--error);
+  background: var(--error-bg);
+  border-color: #f3c2bd;
+}
+
+.result-explanation {
+  margin: 10px auto 0;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.healthy-range {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-soft);
+}
+
+/* ---------- BMI scale ---------- */
+.scale-block {
+  margin-top: 14px;
+}
+
+.bmi-scale {
+  position: relative;
+  display: flex;
+  height: 14px;
+  border-radius: 999px;
+  overflow: visible;
+  border: 1px solid var(--border);
+}
+
+.scale-seg {
+  height: 100%;
+}
+
+.seg-under {
+  width: 17.3%;
+  background: #93b4f8;
+  border-radius: 999px 0 0 999px;
+}
+
+.seg-normal {
+  width: 25%;
+  background: #22c55e;
+}
+
+.seg-over {
+  width: 19.2%;
+  background: #f59e0b;
+}
+
+.seg-obese {
+  width: 38.5%;
+  background: #ef4444;
+  border-radius: 0 999px 999px 0;
+}
+
+.scale-marker {
+  position: absolute;
+  top: -5px;
+  width: 4px;
+  height: 22px;
+  background: var(--navy);
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(15, 37, 87, 0.4);
+  transform: translateX(-50%);
+  transition: left 0.2s ease;
+}
+
+.scale-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- Disclaimer ---------- */
+.disclaimer {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  font-size: 0.83rem;
+  color: var(--muted);
+  background: var(--orange-soft);
+  border: 1px solid #f5d9a8;
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+.disclaimer strong {
+  color: var(--orange);
+}
+
+/* ---------- Category list ---------- */
+.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #f8faff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.category-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-item .range {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.dot-under { background: #93b4f8; }
+.dot-normal { background: #22c55e; }
+.dot-over { background: #f59e0b; }
+.dot-obese { background: #ef4444; }
+
+/* ---------- Formulas ---------- */
+.formula-list {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formula-list li code {
+  display: block;
+  padding: 9px 12px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92rem;
+  color: var(--navy-soft);
+  background: #f8faff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

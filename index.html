@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BMI Calculator — Enter height and weight to get your Body Mass Index and weight category. Veda Technology Web Development Internship Task 6." />
+  <title>BMI Calculator | Veda Technology Internship Task 6</title>
+  <meta name="theme-color" content="#0f2557" />
+  <!-- Relative paths for GitHub Pages compatibility -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Page heading -->
+    <header class="header">
+      <h1>BMI Calculator</h1>
+      <p class="subtitle">Enter your height and weight to find your Body Mass Index and weight category</p>
+    </header>
+
+    <main>
+      <!-- Calculator card -->
+      <section class="card calculator-card" aria-label="BMI calculator">
+        <form id="bmiForm" novalidate>
+          <!-- Height input -->
+          <div class="field">
+            <label for="heightInput">Height (cm)</label>
+            <input
+              type="text"
+              id="heightInput"
+              name="height"
+              inputmode="decimal"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="e.g. 170"
+              aria-describedby="heightHint heightError"
+            />
+            <p id="heightHint" class="hint">Height in centimetres, between 50 cm and 300 cm.</p>
+            <p id="heightError" class="error" role="alert" aria-live="polite" hidden></p>
+          </div>
+
+          <!-- Weight input -->
+          <div class="field">
+            <label for="weightInput">Weight (kg)</label>
+            <input
+              type="text"
+              id="weightInput"
+              name="weight"
+              inputmode="decimal"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="e.g. 65"
+              aria-describedby="weightHint weightError"
+            />
+            <p id="weightHint" class="hint">Weight in kilograms, between 2 kg and 500 kg.</p>
+            <p id="weightError" class="error" role="alert" aria-live="polite" hidden></p>
+          </div>
+
+          <!-- Actions -->
+          <div class="actions" role="group" aria-label="Calculator actions">
+            <button type="submit" id="calculateBtn" class="btn btn-primary">Calculate BMI</button>
+            <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+
+        <!-- Result (empty state until a valid calculation is submitted) -->
+        <div class="result-panel" aria-label="BMI result">
+          <span class="result-label">Your BMI</span>
+          <div id="resultEmpty" class="result-empty" aria-live="polite">
+            <p>Enter your height and weight, then press <strong>Calculate BMI</strong>.</p>
+          </div>
+          <div id="resultContent" class="result-content" aria-live="polite" hidden>
+            <p id="bmiValue" class="bmi-value">22.49</p>
+            <p class="badge-row"><span id="bmiBadge" class="badge badge-normal">Normal weight</span></p>
+            <p id="bmiExplanation" class="result-explanation"></p>
+            <p id="healthyRange" class="healthy-range"></p>
+
+            <!-- Visual BMI scale -->
+            <div class="scale-block">
+              <div
+                class="bmi-scale"
+                role="img"
+                id="bmiScaleImg"
+                aria-label="BMI scale marker"
+              >
+                <div class="scale-seg seg-under" title="Underweight: below 18.5"></div>
+                <div class="scale-seg seg-normal" title="Normal weight: 18.5 to below 25"></div>
+                <div class="scale-seg seg-over" title="Overweight: 25 to below 30"></div>
+                <div class="scale-seg seg-obese" title="Obesity: 30 and above"></div>
+                <div id="scaleMarker" class="scale-marker" aria-hidden="true"></div>
+              </div>
+              <div class="scale-ticks" aria-hidden="true">
+                <span>14</span>
+                <span>18.5</span>
+                <span>25</span>
+                <span>30</span>
+                <span>40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="disclaimer">
+          <strong>Note:</strong> These are general adult BMI categories. BMI is a screening
+          measure, not a medical diagnosis — it does not account for muscle mass, age,
+          pregnancy, or health conditions. Consult a healthcare professional for personal advice.
+        </p>
+      </section>
+
+      <!-- Categories reference -->
+      <section class="card" aria-labelledby="categoriesHeading">
+        <h2 id="categoriesHeading">BMI categories</h2>
+        <p class="section-note">Standard adult ranges used by this calculator.</p>
+        <ul class="category-list">
+          <li class="category-item">
+            <span class="dot dot-under" aria-hidden="true"></span>
+            <div>
+              <strong>Underweight</strong>
+              <span class="range">BMI below 18.5</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <span class="dot dot-normal" aria-hidden="true"></span>
+            <div>
+              <strong>Normal weight</strong>
+              <span class="range">BMI 18.5 to below 25</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <span class="dot dot-over" aria-hidden="true"></span>
+            <div>
+              <strong>Overweight</strong>
+              <span class="range">BMI 25 to below 30</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <span class="dot dot-obese" aria-hidden="true"></span>
+            <div>
+              <strong>Obesity</strong>
+              <span class="range">BMI 30 and above</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Formula reference -->
+      <section class="card" aria-labelledby="formulaHeading">
+        <h2 id="formulaHeading">Formula</h2>
+        <ul class="formula-list">
+          <li><code>BMI = weight (kg) &divide; height (m) &times; height (m)</code></li>
+          <li><code>height (m) = height (cm) &divide; 100</code></li>
+        </ul>
+        <p class="section-note">Example: 65 kg &divide; (1.70 m &times; 1.70 m) = 22.49. The result is rounded to two decimal places for display; the category is decided from the full-precision value.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Veda Technology &mdash; Web Development Internship &middot; Task 6: BMI Calculator</p>
+    </footer>
+  </div>
+
+  <!-- Relative path for GitHub Pages compatibility. defer ensures DOM is ready. -->
+  <script src="./script.js" defer></script>
+</body>
+</html>

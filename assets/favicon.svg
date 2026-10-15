@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BMI Calculator favicon">
+  <rect width="64" height="64" rx="14" fill="#0f2557"/>
+  <path d="M20 44c6-2 8-8 10-14 1.5-4.5 3-9 8-10" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="38" cy="20" r="5" fill="#f59e0b"/>
+  <rect x="14" y="46" width="36" height="4" rx="2" fill="#ffffff" opacity="0.85"/>
+</svg>
